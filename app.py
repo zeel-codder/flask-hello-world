@@ -92,6 +92,3 @@ def get_availability():
             return str(False)
         else:
             return str(True)
-
-
-app.run()
