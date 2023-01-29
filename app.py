@@ -94,4 +94,4 @@ def get_availability():
             return str(True)
 
 
-app.run(debug=True)
+app.run()
