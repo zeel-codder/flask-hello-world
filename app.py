@@ -4,12 +4,14 @@ import warnings
 from selenium.webdriver.chrome.options import Options as ChromeOptions
 from selenium.webdriver.common.by import By
 from flask import Flask, request
+import os
 
 warnings.filterwarnings("ignore")
 
 app = Flask(__name__)
 user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.83 Safari/537.36"
 PROXY = "localhost:8888"
+
 
 options = ChromeOptions()
 options.headless = True
@@ -52,7 +54,9 @@ def get_availability():
         ]
 
         # starting driver
-        driver = webdriver.Chrome(options=options, executable_path="chromedriver.exe")
+        driver = webdriver.Chrome(
+            options=options, executable_path=os.getcwd() + "/chromedriver.exe"
+        )
         driver.get(links[data["number"] - 1])
         time.sleep(2)  # sleep_between_interactions
 
@@ -92,3 +96,6 @@ def get_availability():
             return str(False)
         else:
             return str(True)
+
+
+# app.run()
